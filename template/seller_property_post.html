@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post New Property</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        
+        h1 {
+            text-align: center;
+        }
+        
+        form {
+            margin-top: 30px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+        
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+        
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+        
+        input[type="submit"] {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        input[type="submit"]:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Post New Property</h1>
+        <form action="/submit-property" method="post">
+            <label for="Email">Email:</label>
+            <input type="text" id="email" name="email" readonly>
+            <label for="type">Type of Property:</label>
+            <select id="type" name="type" required>
+            <option value="apartment">Apartment</option>
+            <option value="house">House</option>
+            <option value="condo">Condo</option>
+        </select>
+
+            <label for="bedrooms">Bedrooms:</label>
+            <input type="number" id="bedrooms" name="bedrooms" required>
+
+            <label for="bathrooms">Bathrooms:</label>
+            <input type="number" id="bathrooms" name="bathrooms" required>
+
+            <label for="waterSupply">Water Supply:</label>
+            <select id="waterSupply" name="waterSupply" required>
+            <option value="municipal">Municipal</option>
+            <option value="well">Well</option>
+            <option value="tanker">Tanker</option>
+        </select>
+
+            <label for="electricity">Electricity:</label>
+            <select id="electricity" name="electricity" required>
+            <option value="grid">Grid</option>
+            <option value="solar">Solar</option>
+            <option value="generator">Generator</option>
+        </select>
+
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location" required>
+
+            <label for="amenities">Nearby Amenities:</label>
+            <textarea id="amenities" name="amenities" required></textarea>
+
+            <label for="contactNumber">Contact Number:</label>
+            <input type="text" id="contactNumber" name="contactNumber" required>
+
+            <label for="monthlyRent">Monthly Rent:</label>
+            <input type="number" id="monthlyRent" name="monthlyRent" required>
+
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    <script>
+        var user = sessionStorage.user
+        document.getElementById("email").value = user;
+    </script>
+
+</body>
+
+</html>

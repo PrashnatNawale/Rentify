@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seller Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .navbar {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .navbar h1 {
+            margin: 0;
+        }
+        
+        .add-property-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 5px;
+        }
+        
+        #property-list {
+            margin-top: 20px;
+        }
+        
+        .property {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="navbar">
+            <h1>Seller Dashboard</h1>
+            <a href="seller_property_post.html" class="add-property-btn">Add New Property</a>
+        </div>
+        <div id="property-list">
+            <h2>My Properties</h2>
+
+            <table>
+                <thead>
+                    <th>Property ID</th>
+                    <td>Type</td>
+                    <td>Number of Bedrooms</td>
+                    <td>Number of Bathrooms</td>
+                    <td>Water Supply</td>
+                    <td>Electricity</td>
+                    <td>Location</td>
+                    <td>Amenities</td>
+                    <td>Contact Number</td>
+                    <td>Monthly Rent</td>
+                    <td>Seller Email ID</td>
+                </thead>
+                <tbody id="tbody">
+
+                </tbody>
+
+
+
+            </table>
+        </div>
+    </div>
+    <script>
+        // Fetch properties using GET request
+        const user = sessionStorage.getItem("user");
+        var api_url = window.origin + "/properties/";
+        async function getapi(url) {
+            const response = await fetch(url + user);
+            var data = await response.json();
+            showdata(data);
+        }
+        getapi(api_url);
+
+        function showdata(data) {
+            const tbody = document.getElementById("tbody");
+
+
+
+            // Loop through each property in the data and create property boxes
+            data.forEach(property => {
+                // Create a new table row
+                const row = document.createElement("tr");
+
+                // Loop through each property detail and create table cells
+                for (const key in property) {
+                    if (property.hasOwnProperty(key)) {
+                        // Create a new table cell for each property detail
+                        const cell = document.createElement("td");
+                        // Set the text content of the cell to the property detail value
+                        cell.textContent = property[key];
+                        // Append the cell to the row
+                        row.appendChild(cell);
+                    }
+                }
+
+                // Append the row to the table body
+                tbody.appendChild(row);
+            });
+        }
+    </script>
+
+</body>
+
+</html>
